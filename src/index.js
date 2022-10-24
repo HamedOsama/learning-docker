@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const redis = require('redis');
+const os = require('os')
 
 const port = process.env.PORT || 3000;
 
@@ -37,11 +38,16 @@ mongoose
 // home page
 app.get('/', async (req, res) => {
   await redisClient.set('products', 'products...')
+  console.log(`traffic come from ${os.hostname}`)
   res.send(`hello world from ${process.env.NODE_ENV}`);
 });
 
 app.get('/test', async (req, res) => {
   res.send(`Test for updates`);
+});
+
+app.get('/test-cloud-updates', async (req, res) => {
+  res.send(`Test for cloud updates v1`);
 });
 
 app.get('/data', async (req, res) => {
