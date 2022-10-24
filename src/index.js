@@ -40,6 +40,10 @@ app.get('/', async (req, res) => {
   res.send(`hello world from ${process.env.NODE_ENV}`);
 });
 
+app.get('/test', async (req, res) => {
+  res.send(`Test for updates`);
+});
+
 app.get('/data', async (req, res) => {
   const product = await redisClient.get('products')
   redisClient.set('product', 'products...')
